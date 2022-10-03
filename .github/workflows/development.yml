@@ -21,7 +21,7 @@ jobs:
         run: npm install --legacy-peer-deps
 
       - name: Build Files
-        run: npm run build
+        run: npm run build --base-href /connect/
 
       - name: Upload dev APK
         uses: actions/upload-artifact@v3
