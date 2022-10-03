@@ -1,0 +1,53 @@
+name: Church Connect Development Jobs
+
+on:
+  push:
+    branches: [ develop ]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v2
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+
+      - name: Install app dependencies
+        run: npm install --legacy-peer-deps
+
+      - name: Build Files
+        run: npm run build
+
+      - name: Upload dev APK
+        uses: actions/upload-artifact@v3
+        with:
+          name: website
+          path: dist/
+
+  deploy:
+    name: Deployment
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: website
+          path: project
+      - name: Copy Artifact to Server
+        uses: garygrossgarten/github-action-scp@release
+        with: 
+          local: project/church-connect
+          remote: /www/wwwroot/connection
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          rmRemote: true
+          concurrency: 2
+          recursive: true
+          atomicPut: true
