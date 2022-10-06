@@ -8,6 +8,9 @@ import { AuthenticationService } from './authentication.service';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { CoreModule } from '../core/core.module';
+import { CardModule } from 'primeng/card';
+import { ButtonModule } from 'primeng/button';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -22,8 +25,12 @@ import { CoreModule } from '../core/core.module';
   imports: [
     CommonModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     CoreModule,
-    AuthenticationRoutingModule
+    AuthenticationRoutingModule,
+    CardModule,
+    ButtonModule
   ]
 })
 export class AuthenticationModule { }

@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { GenericResponse } from '../core/models/generic.model';
 import { ResourceService } from '../core/services/resource.service';
 import { TokenService } from '../core/services/token.service';
 import { AuthenticationConstants } from './authentication.constant';
-import { LoginRegisterModel } from './authentication.model';
+import { AuthenticationModel, LoginRegisterModel } from './authentication.model';
 
 @Injectable({
   providedIn: 'root'
@@ -20,8 +22,15 @@ export class AuthenticationService {
 
   public login(loginModel: LoginRegisterModel) {
     const url = this.resourceService.getResourceURL(`${this.AUTH_URL}${AuthenticationConstants.LOGIN_URL}`);
-    this.http.post(url, loginModel).subscribe(result => {
-      // handle token and refresh token 
+    (this.http.post(url, loginModel) as Observable<GenericResponse<AuthenticationModel>>).subscribe(result => {
+      
+      if (result.error) {
+        //TODO: handle error
+        return;
+      }
+
+      //TODO: handle token and refresh token 
+      
     });
   }
 
