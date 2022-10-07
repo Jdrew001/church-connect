@@ -11,13 +11,15 @@ import { CoreModule } from '../core/core.module';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AcceptInviteComponent } from './accept-invite/accept-invite.component';
 
 
 @NgModule({
   declarations: [
     AuthenticationComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    AcceptInviteComponent
   ],
   providers: [
     AuthenticationService

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AcceptInviteComponent } from './accept-invite/accept-invite.component';
 import { AuthenticationComponent } from './authentication.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -16,6 +17,10 @@ const routes: Routes = [
       {
         path: 'register',
         component: RegisterComponent
+      },
+      {
+        path: 'accept-invite',
+        component: AcceptInviteComponent
       }
     ]
   }
