@@ -29,11 +29,7 @@ export class UserService {
         return;
       }
 
-      /** TODO:
-       * success message
-       * redirect user to login page
-       */
-
+      this.tokenService.removeToken()
       this.router.navigateByUrl("/auth/login");
     });
   }

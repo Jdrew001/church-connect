@@ -22,7 +22,7 @@ export class AuthenticationService {
 
   public login(loginModel: LoginRegisterModel) {
     const url = this.resourceService.getResourceURL(`${this.AUTH_URL}${AuthenticationConstants.LOGIN_URL}`);
-    (this.http.post(url, loginModel, { headers: {'scope': 'PUBLIC'}}) as Observable<GenericResponse<AuthenticationModel>>).subscribe(result => {
+    (this.http.post(url, loginModel) as Observable<GenericResponse<AuthenticationModel>>).subscribe(result => {
       
       if (result.error) {
         //TODO: handle error
@@ -39,7 +39,7 @@ export class AuthenticationService {
 
   public register(loginModel: LoginRegisterModel) {
     const url = this.resourceService.getResourceURL(`${this.AUTH_URL}${AuthenticationConstants.REGISTER_URL}`);
-    this.http.post(url, loginModel, { headers: {'scope': 'PUBLIC'}}).subscribe(result => {
+    this.http.post(url, loginModel).subscribe(result => {
       // handle token and refresh token 
     });
   }
@@ -55,7 +55,7 @@ export class AuthenticationService {
   //TODO: Retrieve token from token service and send to backend
   public refreshToken() {
     const url = this.resourceService.getResourceURL(`${this.AUTH_URL}${AuthenticationConstants.REFRESH_URL}`);
-    this.http.post(url, 'token here', { headers: {'scope': 'PUBLIC'}}).subscribe(result => {
+    this.http.post(url, 'token here').subscribe(result => {
       // handle token and refresh token 
     });
   }

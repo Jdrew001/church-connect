@@ -1,6 +1,7 @@
 import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { EMPTY, Observable } from 'rxjs';
+import { CoreConstants } from '../core.constants';
 import { TokenService } from '../services/token.service';
 
 @Injectable({
@@ -14,10 +15,8 @@ export class TokenInterceptorService implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const token = this.tokenService.getToken();
-    const scopeHeader = req.headers.get("scope");
 
-    if (!scopeHeader) {
-
+    if (!this.checkForPublic(req)) {
       if (!token) {
         // TODO: Show an alert message to the user
         return EMPTY;
@@ -25,11 +24,25 @@ export class TokenInterceptorService implements HttpInterceptor {
 
       req = req.clone({
         setHeaders: {
-          "authorization": `Bearer ${token}`
+          "Authorization": `Bearer ${token}`
         }
       });
     }
 
     return next.handle(req);
   }
+
+  private checkForPublic(req: HttpRequest<any>) {
+    const urls = CoreConstants.PUBLIC_URLS;
+    let result = false;
+    req.url
+    urls.forEach(item => {
+      if (req.url.includes(item)) {
+        result = true;
+      }
+    });
+
+    return result;
+  }
+
 }

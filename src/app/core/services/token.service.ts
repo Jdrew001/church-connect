@@ -30,7 +30,7 @@ export class TokenService {
     return sessionStorage.getItem(this.TOKEN_KEY);
   }
 
-  removeToken(token: string) {
+  removeToken() {
     sessionStorage.removeItem(this.TOKEN_KEY);
   }
 }
