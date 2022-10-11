@@ -12,6 +12,7 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AcceptInviteComponent } from './accept-invite/accept-invite.component';
+import {InputTextModule} from 'primeng/inputtext';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { AcceptInviteComponent } from './accept-invite/accept-invite.component';
     CoreModule,
     AuthenticationRoutingModule,
     CardModule,
-    ButtonModule
+    ButtonModule,
+    InputTextModule
   ]
 })
 export class AuthenticationModule { }

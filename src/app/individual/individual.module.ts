@@ -2,13 +2,22 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { IndividualRoutingModule } from './individual-routing.module';
+import { IndividualComponent } from './individual.component';
+import { CreateIndividualComponent } from './create-individual/create-individual.component';
+import { ButtonModule } from 'primeng/button';
+import { RippleModule } from 'primeng/ripple';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    IndividualComponent,
+    CreateIndividualComponent
+  ],
   imports: [
     CommonModule,
-    IndividualRoutingModule
+    IndividualRoutingModule,
+    ButtonModule,
+    RippleModule
   ]
 })
 export class IndividualModule { }

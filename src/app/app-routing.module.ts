@@ -5,12 +5,8 @@ import { AppComponent } from './app.component';
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
   {
-    path: 'individual',
-    loadChildren: () => import('./individual/individual.module').then(m => m.IndividualModule)
-  },
-  {
-    path: 'interaction',
-    loadChildren: () => import('./interaction/interaction.module').then(m => m.InteractionModule)
+    path: 'main',
+    loadChildren: () => import('./main/main.module').then(m => m.MainModule)
   },
   {
     path: 'auth',

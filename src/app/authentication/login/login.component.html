@@ -1,18 +1,30 @@
-<div class="container" [formGroup]="loginForm">
-    <div class="grid form">
-        <div class="col-12 md:col-6 lg:col-6 md:col-offset-3 lg:col-offset-3">
-            <p-card>
-                <div class="field">
-                    <label for="firstname1">Email</label>
-                    <input formControlName="email" id="firstname1" type="text" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-                </div>
-                <div class="field">
-                    <label for="lastname1">Password</label>
-                    <input formControlName="password" id="lastname1" type="password" class="text-base text-color surface-overlay p-2 border-1 border-solid surface-border border-round appearance-none outline-none focus:border-primary w-full">
-                </div>
-
-                <button pButton type="button" class="p-button-raised p-button-rounded" (click)="submit()">Submit</button>
-            </p-card>
+<div  class="surface-card p-4 shadow-2 border-round w-full lg:w-6" style="margin: auto">
+    <div class="text-center mb-5">
+        <img src="../../../assets/logo-placeholder.jpeg" alt="Image" height="50" class="mb-3">
+        <div class="text-900 text-3xl font-medium mb-3">
+            <p>Welcome Back</p>
         </div>
+    </div>
+
+    <div [formGroup]="loginForm">
+        <span class="p-float-label mb-5">
+            <input formControlName="email" class="w-full" id="float-input" type="text" pInputText> 
+            <label for="float-input">Email</label>
+        </span>
+
+        <span class="p-float-label mb-5">
+            <input formControlName="password" class="w-full" id="float-input" type="text" pInputText> 
+            <label for="float-input">Password</label>
+        </span>
+
+        <!-- <div class="flex align-items-center justify-content-between mb-6">
+            <div class="flex align-items-center">
+                <p-checkbox id="rememberme" [binary]="true" styleClass="mr-2"></p-checkbox>
+                <label for="rememberme1">Remember me</label>
+            </div>
+            <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot password?</a>
+        </div> -->
+
+        <button pButton pRipple label="Sign In" icon="pi pi-user" class="w-full mb-3"></button>
     </div>
 </div>

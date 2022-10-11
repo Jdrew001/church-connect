@@ -10,6 +10,7 @@ export class AppComponent implements OnInit {
     console.log('');
   }
   title = 'church-connect';
+  display = false;
 
   
 }
