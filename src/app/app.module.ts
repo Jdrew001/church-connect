@@ -7,6 +7,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ButtonModule} from 'primeng/button';
 import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
+import {SidebarModule} from 'primeng/sidebar';
+import { AuthService } from './core/guards/auth.service';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,7 @@ import { CoreModule } from './core/core.module';
     CoreModule,
     ButtonModule,
     SharedModule,
+    SidebarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

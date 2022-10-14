@@ -1,0 +1,30 @@
+<div  class="surface-card p-4 shadow-2 border-round w-full lg:w-6" style="margin: auto">
+    <div class="text-center mb-5">
+        <img src="../../../assets/logo-placeholder.jpeg" alt="Image" height="50" class="mb-3">
+        <div class="text-900 text-3xl font-medium mb-3">
+            <p>Welcome Back</p>
+        </div>
+    </div>
+
+    <div [formGroup]="loginForm">
+        <span class="p-float-label mb-5">
+            <input formControlName="email" class="w-full" id="float-input" type="text" pInputText> 
+            <label for="float-input">Email</label>
+        </span>
+
+        <span class="p-float-label mb-5">
+            <input formControlName="password" class="w-full" id="float-input" type="text" pInputText> 
+            <label for="float-input">Password</label>
+        </span>
+
+        <!-- <div class="flex align-items-center justify-content-between mb-6">
+            <div class="flex align-items-center">
+                <p-checkbox id="rememberme" [binary]="true" styleClass="mr-2"></p-checkbox>
+                <label for="rememberme1">Remember me</label>
+            </div>
+            <a class="font-medium no-underline ml-2 text-blue-500 text-right cursor-pointer">Forgot password?</a>
+        </div> -->
+
+        <button pButton pRipple label="Sign In" icon="pi pi-user" class="w-full mb-3" (click)="submit()"></button>
+    </div>
+</div>

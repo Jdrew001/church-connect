@@ -1,10 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+import { AuthService } from './core/guards/auth.service';
 
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
-  { path: '', component: AppComponent },
+  {
+    path: 'main',
+    loadChildren: () => import('./main/main.module').then(m => m.MainModule),
+    canActivate: [AuthService]
+  },
+  {
+    path: 'auth',
+    loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
+  }
 ];
 
 @NgModule({
