@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { AuthService } from './core/guards/auth.service';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/', pathMatch: 'full' },
+  { path: '', redirectTo: '/main/individuals', pathMatch: 'full' },
   {
     path: 'main',
     loadChildren: () => import('./main/main.module').then(m => m.MainModule),
