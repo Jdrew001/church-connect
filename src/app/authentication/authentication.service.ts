@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { GenericResponse } from '../core/models/generic.model';
+import { AuthorizationService } from '../core/services/authorization.service';
 import { ResourceService } from '../core/services/resource.service';
 import { TokenService } from '../core/services/token.service';
 import { AuthenticationConstants } from './authentication.constant';
@@ -17,7 +19,9 @@ export class AuthenticationService {
   constructor(
     private http: HttpClient,
     private resourceService: ResourceService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private router: Router,
+    private authorizationService: AuthorizationService
   ) { }
 
   public login(loginModel: LoginRegisterModel) {
@@ -33,7 +37,11 @@ export class AuthenticationService {
       this.tokenService.setRefreshToken((result.data?.refreshToken) as string);
       this.tokenService.setToken((result.data?.accessToken) as string);
 
-      //TODO: Redirect to main authenticated home page
+      // TODO: we want to start the timer for the access token expiration
+      this.authorizationService.startRefreshTokenTimer(result.data?.accessToken)
+      // If it expires then we want to use the refresh token --> if no refresh token, then we will redirect to login
+
+      this.router.navigateByUrl("/main/individuals");
     });
   }
 
@@ -47,14 +55,6 @@ export class AuthenticationService {
   //TODO: Retrieve token from token service and send to backend
   public logout() {
     const url = this.resourceService.getResourceURL(`${this.AUTH_URL}${AuthenticationConstants.LOGOUT_URL}`);
-    this.http.post(url, 'token here').subscribe(result => {
-      // handle token and refresh token 
-    });
-  }
-
-  //TODO: Retrieve token from token service and send to backend
-  public refreshToken() {
-    const url = this.resourceService.getResourceURL(`${this.AUTH_URL}${AuthenticationConstants.REFRESH_URL}`);
     this.http.post(url, 'token here').subscribe(result => {
       // handle token and refresh token 
     });

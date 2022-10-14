@@ -15,10 +15,10 @@ export class TokenService {
   }
 
   getRefreshToken(): string | null {
-    return sessionStorage.getItem(this.REFRESH_TOKEN_KEY);
+    return localStorage.getItem(this.REFRESH_TOKEN_KEY);
   }
 
-  removeRefreshToken(token: string) {
+  removeRefreshToken() {
     sessionStorage.removeItem(this.REFRESH_TOKEN_KEY);
   }
 
@@ -32,5 +32,10 @@ export class TokenService {
 
   removeToken() {
     sessionStorage.removeItem(this.TOKEN_KEY);
+  }
+
+  removeAllTokens() {
+    this.removeRefreshToken();
+    this.removeToken();
   }
 }

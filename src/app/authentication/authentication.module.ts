@@ -27,7 +27,6 @@ import {InputTextModule} from 'primeng/inputtext';
   ],
   imports: [
     CommonModule,
-    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     CoreModule,
