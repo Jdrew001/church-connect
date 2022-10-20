@@ -6,6 +6,9 @@ import { IndividualComponent } from './individual.component';
 import { CreateIndividualComponent } from './create-individual/create-individual.component';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
+import { TableModule } from 'primeng/table';
+import { DataViewModule } from 'primeng/dataview';
+import {OverlayPanelModule} from 'primeng/overlaypanel';
 
 
 @NgModule({
@@ -17,7 +20,10 @@ import { RippleModule } from 'primeng/ripple';
     CommonModule,
     IndividualRoutingModule,
     ButtonModule,
-    RippleModule
+    RippleModule,
+    TableModule,
+    DataViewModule,
+    OverlayPanelModule
   ]
 })
 export class IndividualModule { }

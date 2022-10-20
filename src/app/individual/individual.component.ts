@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TableConfig } from '../shared/models/table-config.model';
+import { IndividualService } from './individual.service';
+import { IndividualModel } from './models/individual.model';
 
 @Component({
   selector: 'app-individual',
@@ -7,9 +10,31 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndividualComponent implements OnInit {
 
-  constructor() { }
+  data: Array<IndividualModel> = [];
+  configuration: TableConfig = {
+    columns: [],
+    search: false
+  };
+  viewType: 'LIST' | 'GRID' = 'LIST';
+
+  constructor(
+    private individualService: IndividualService
+  ) { }
 
   ngOnInit(): void {
+    this.fetchIndividuals();
+  }
+
+  fetchIndividuals() {
+    this.individualService.fetchIndividuals().subscribe(result => {
+      this.data = result.data.individuals;
+      console.log('data', this.data);
+      this.configuration = result.data.configuration;
+    });
+  }
+
+  changeView(view: 'LIST' | 'GRID') {
+    this.viewType = view;
   }
 
 }
