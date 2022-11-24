@@ -13,6 +13,10 @@ const routes: Routes = [
                 loadChildren: () => import('../individual/individual.module').then(m => m.IndividualModule)
             },
             {
+                path: 'create-individual',
+                loadChildren: () => import('../create-individual/create-individual.module').then(m => m.CreateIndividualModule)
+            },
+            {
                 path: 'interactions',
                 loadChildren: () => import('../interaction/interaction.module').then(m => m.InteractionModule)
             }

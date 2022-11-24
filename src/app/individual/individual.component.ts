@@ -33,6 +33,10 @@ export class IndividualComponent implements OnInit {
     });
   }
 
+  navigateToCreate() {
+    
+  }
+
   changeView(view: 'LIST' | 'GRID') {
     this.viewType = view;
   }

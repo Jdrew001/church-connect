@@ -25,14 +25,6 @@ export class AuthorizationService {
     private router: Router
   ) { }
 
-  /**
-   * When the user logs in, we want to start a refresh timer
-   * 
-   * if the user's token expires then we want to automatically call refresh token during their session
-   * 
-   * 
-   */
-
   //TODO: Retrieve token from token service and send to backend
   public refreshToken() {
     const refreshToken = this.tokenService.getRefreshToken();

@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 
 import { IndividualRoutingModule } from './individual-routing.module';
 import { IndividualComponent } from './individual.component';
-import { CreateIndividualComponent } from './create-individual/create-individual.component';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
 import { TableModule } from 'primeng/table';
@@ -13,8 +12,7 @@ import {OverlayPanelModule} from 'primeng/overlaypanel';
 
 @NgModule({
   declarations: [
-    IndividualComponent,
-    CreateIndividualComponent
+    IndividualComponent
   ],
   imports: [
     CommonModule,
