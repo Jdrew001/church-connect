@@ -9,6 +9,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { TabViewModule } from 'primeng/tabview';
 import { InputMaskModule } from 'primeng/inputmask';
 import { AccordionModule } from 'primeng/accordion';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import {MultiSelectModule} from 'primeng/multiselect';
 
 
 @NgModule({
@@ -25,7 +27,8 @@ import { AccordionModule } from 'primeng/accordion';
     TabViewModule,
     AccordionModule,
     InputMaskModule,
-    
+    InputTextareaModule,
+    MultiSelectModule
   ]
 })
 export class CreateIndividualModule { }

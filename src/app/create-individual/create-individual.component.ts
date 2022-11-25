@@ -27,6 +27,15 @@ export class CreateIndividualComponent {
     ])
   });
   activeFamilyIndex = [0];
+  truefalseOptions = [
+    {label: 'Yes', value: 'Y'},
+    {label: 'No', value: 'N'},
+  ];
+  individualsOptions = [
+    {
+      label: 'Drew Atkison', value: 'id'
+    }
+  ];
 
   get family() { return this.createForm.controls['family']; }
 
@@ -35,11 +44,16 @@ export class CreateIndividualComponent {
     private cd: ChangeDetectorRef
   ) { }
 
+  submitForm() {
+    
+  }
+
   navigateBackToList() {
     this.router.navigateByUrl('/main/individuals');
   }
 
   addNewFamily() {
+    this.activeFamilyIndex = [-1];
     this.family.controls.push(new FormGroup({
       firstname: new FormControl('Drew'),
       lastname: new FormControl('Atkison'),
@@ -49,7 +63,7 @@ export class CreateIndividualComponent {
 
     setTimeout(() => {
       this.activeFamilyIndex = [this.family.controls.length - 1];
-    }, 50)
+    }, 500)
   }
 
   deleteFamilyItem(index) {

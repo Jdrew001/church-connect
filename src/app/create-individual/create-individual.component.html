@@ -5,7 +5,12 @@
             <span class="text-base font-medium text-900">Create Individual</span>
         </div>
         <div class="flex align-items-center">
-            <button (click)="navigateBackToList()" pButton pRipple class="p-button-sm p-button-raised p-button-outlined" label="Cancel" icon="pi pi-times"></button>
+            <div class="mr-3">
+                <button  (click)="navigateBackToList()" pButton pRipple class="p-button-sm p-button-raised p-button-outlined" label="" icon="pi pi-times"></button>
+            </div>
+            <div>
+                <button (click)="submitForm()" pButton pRipple class="p-button-sm p-button-raised p-button-outlined" label="" icon="pi pi-check"></button>
+            </div>            
         </div>
     </div>
 </div>
@@ -89,8 +94,39 @@
             </p-accordionTab>
         </p-accordion>
     </p-tabPanel>
-    <p-tabPanel header="Spiritual">
-        Content 3
+    <p-tabPanel header="Other">
+        <div class="grid">
+            <div class="xl:col-6 col-12 formgrid p-fluid">
+                <div class="field mb-4 col-12">
+                    <label for="firstname" class="font-medium text-900">First Time Guest</label>
+                    <p-multiSelect [showHeader]="false" [options]="truefalseOptions" selectionLimit="1" optionLabel="label"></p-multiSelect>
+                </div>
+            </div>
+            <div class="xl:col-6 col-12 formgrid p-fluid">
+                <div class="field mb-4 col-12">
+                    <label for="lastname" class="font-medium text-900">Baptized</label>
+                    <p-multiSelect [showHeader]="false" [options]="truefalseOptions" selectionLimit="1" optionLabel="label"></p-multiSelect>
+                </div>
+            </div>
+            <div class="xl:col-6 col-12 formgrid p-fluid">
+                <div class="field mb-4 col-12">
+                    <label for="email" class="font-medium text-900">Holy Ghost</label>
+                    <p-multiSelect [showHeader]="false" [options]="truefalseOptions" selectionLimit="1" optionLabel="label"></p-multiSelect>
+                </div>
+            </div>
+            <div class="xl:col-6 col-12 formgrid p-fluid">
+                <div class="field mb-4 col-12">
+                    <label for="address" class="font-medium text-900">Connected with</label>
+                    <p-multiSelect [options]="individualsOptions"  optionLabel="label"></p-multiSelect>
+                </div>
+            </div>
+            <div class="xl:col-6 col-12 formgrid p-fluid">
+                <div class="field mb-4 col-12">
+                    <label for="address" class="font-medium text-900">Notes</label>
+                    <textarea [rows]="5" [cols]="30" pInputTextarea [autoResize]="false"></textarea>
+                </div>
+            </div>
+        </div>
     </p-tabPanel>
 </p-tabView>
 
