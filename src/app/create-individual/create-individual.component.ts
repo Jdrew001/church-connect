@@ -1,16 +1,14 @@
-import { Component, OnInit, ViewChildren } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, QueryList, ViewChildren } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PanelModule } from 'primeng/panel';
+import { Panel } from 'primeng/panel';
 
 @Component({
   selector: 'app-create-individual',
   templateUrl: './create-individual.component.html',
   styleUrls: ['./create-individual.component.sass']
 })
-export class CreateIndividualComponent implements OnInit {
-
-  @ViewChildren('panel') panels: Array<PanelModule>;
+export class CreateIndividualComponent {
 
   createForm = new FormGroup({
     firstname: new FormControl('', Validators.required),
@@ -21,24 +19,21 @@ export class CreateIndividualComponent implements OnInit {
     address: new FormControl(''),
     family: new FormArray([
       new FormGroup({
-        firstname: new FormControl('Drew'),
-        lastname: new FormControl('Atkison'),
+        firstname: new FormControl(''),
+        lastname: new FormControl(''),
         ageRange: new FormControl(''),
         birthday: new FormControl('')
       })
     ])
   });
-  activeFamily = null;
+  activeFamilyIndex = [0];
 
   get family() { return this.createForm.controls['family']; }
 
   constructor(
-    private router: Router
+    private router: Router,
+    private cd: ChangeDetectorRef
   ) { }
-
-  ngOnInit(): void {
-    console.log('family', this.family);
-  }
 
   navigateBackToList() {
     this.router.navigateByUrl('/main/individuals');
@@ -51,15 +46,18 @@ export class CreateIndividualComponent implements OnInit {
       ageRange: new FormControl(''),
       birthday: new FormControl('')
     }));
+
+    setTimeout(() => {
+      this.activeFamilyIndex = [this.family.controls.length - 1];
+    }, 50)
   }
 
   deleteFamilyItem(index) {
     this.family.removeAt(index);
-  }
 
-  familyPanelToggle(e, index) {
-    if(!e.collapsed) {
-      this.activeFamily = index;
-    }
+    setTimeout(() => {
+      const length = this.family.controls.length;
+      this.activeFamilyIndex = [length > 0 ? length - 1: length];
+    }, 50);
   }
 }
