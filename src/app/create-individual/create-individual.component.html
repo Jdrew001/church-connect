@@ -1,1 +1,95 @@
-<p>create-individual works!</p>
+<div class="surface-section px-1 pt-5 md:px-2 lg:px-2">
+    <div class="flex justify-content-between  pb-4">
+        <div class="flex align-items-center">
+            <i class="pi pi-users text-base mr-3 text-500"></i>
+            <span class="text-base font-medium text-900">Create Individual</span>
+        </div>
+        <div class="flex align-items-center">
+            <button (click)="navigateBackToList()" pButton pRipple class="p-button-sm p-button-raised p-button-outlined" label="Cancel" icon="pi pi-times"></button>
+        </div>
+    </div>
+</div>
+
+<p-tabView>
+    <p-tabPanel header="Personal">
+        <div class="grid">
+            <div class="xl:col-6 col-12 formgrid p-fluid">
+                <div class="field mb-4 col-12">
+                    <label for="firstname" class="font-medium text-900">First Name</label>
+                    <input id="firstname" type="text" pInputText>
+                </div>
+            </div>
+            <div class="xl:col-6 col-12 formgrid p-fluid">
+                <div class="field mb-4 col-12">
+                    <label for="lastname" class="font-medium text-900">Last Name</label>
+                    <input id="lastname" type="text" pInputText>
+                </div>
+            </div>
+            <div class="xl:col-6 col-12 formgrid p-fluid">
+                <div class="field mb-4 col-12">
+                    <label for="email" class="font-medium text-900">Email</label>
+                    <input id="email" type="text" pInputText>
+                </div>
+            </div>
+            <div class="xl:col-6 col-12 formgrid p-fluid">
+                <div class="field mb-4 col-12">
+                    <label for="address" class="font-medium text-900">Address</label>
+                    <input id="address" type="text" pInputText>
+                </div>
+            </div>
+            <div class="xl:col-6 col-12 formgrid p-fluid">
+                <div class="field mb-4 col-12">
+                    <label for="phone" class="font-medium text-900">Phone Number</label>
+                    <input id="phone" type="text" pInputText>
+                </div>
+            </div>
+        </div>
+    </p-tabPanel>
+    <p-tabPanel header="Family">
+        <div class="flex align-items-center justify-content-start pb-4">
+            <span class="flex-grow-1 text-base font-medium text-900">Family Members</span>
+            <button (click)="addNewFamily()" pButton pRipple class="p-button-sm p-button-raised p-button-outlined" icon="pi pi-plus"></button>
+        </div>
+        <p-panel #panel *ngFor="let item of family?.controls; let i=index;"
+            header="{{item.controls['firstname']?.value}} {{ item.controls['lastname']?.value }}"
+            [toggleable]="true"
+            [collapsed]="activeFamily == i"
+            (onAfterToggle)="familyPanelToggle($event, i)">
+            <ng-template pTemplate="icons">
+                <button *ngIf="family?.controls?.length > 1" (click)="deleteFamilyItem(i)" pButton class="p-panel-header-icon p-link">
+                    <span class="pi pi-trash"></span>
+                </button>
+            </ng-template>
+            <div class="grid">
+                <div class="xl:col-6 col-12 formgrid p-fluid">
+                    <div class="field mb-4 col-12">
+                        <label for="ffirstname" class="font-medium text-900">First Name</label>
+                        <input id="ffirstname" type="text" pInputText>
+                    </div>
+                </div>
+                <div class="xl:col-6 col-12 formgrid p-fluid">
+                    <div class="field mb-4 col-12">
+                        <label for="flastname" class="font-medium text-900">Last Name</label>
+                        <input id="flastname" type="text" pInputText>
+                    </div>
+                </div>
+                <div class="xl:col-6 col-12 formgrid p-fluid">
+                    <div class="field mb-4 col-12">
+                        <label for="agerange" class="font-medium text-900">Age Range</label>
+                        <input id="agerange" type="text" pInputText>
+                    </div>
+                </div>
+                <div class="xl:col-6 col-12 formgrid p-fluid">
+                    <div class="field mb-4 col-12">
+                        <label for="fbirth" class="font-medium text-900">Birthday</label>
+                        <p-inputMask mask="99/99/9999" slotChar=" "></p-inputMask>
+                    </div>
+                </div>
+            </div>
+        </p-panel>
+    </p-tabPanel>
+    <p-tabPanel header="Spiritual">
+        Content 3
+    </p-tabPanel>
+</p-tabView>
+

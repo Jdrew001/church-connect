@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { TableConfig } from '../shared/models/table-config.model';
 import { IndividualService } from './individual.service';
 import { IndividualModel } from './models/individual.model';
@@ -18,7 +19,8 @@ export class IndividualComponent implements OnInit {
   viewType: 'LIST' | 'GRID' = 'LIST';
 
   constructor(
-    private individualService: IndividualService
+    private individualService: IndividualService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -34,7 +36,7 @@ export class IndividualComponent implements OnInit {
   }
 
   navigateToCreate() {
-    
+    this.router.navigateByUrl('/main/create-individual');
   }
 
   changeView(view: 'LIST' | 'GRID') {
