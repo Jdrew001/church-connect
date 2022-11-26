@@ -19,12 +19,18 @@ export class CreateIndividualComponent {
     address: new FormControl(''),
     family: new FormArray([
       new FormGroup({
-        firstname: new FormControl(''),
-        lastname: new FormControl(''),
+        firstname: new FormControl('Drew'),
+        lastname: new FormControl('Atkison'),
         ageRange: new FormControl(''),
-        birthday: new FormControl('')
+        birthday: new FormControl(''),
+        relationship: new FormControl('')
       })
-    ])
+    ]),
+    firstTime: new FormControl(''),
+    baptized: new FormControl(''),
+    holyGhost: new FormControl(''),
+    connectedWith: new FormControl([]),
+    notes: new FormControl('')
   });
   activeFamilyIndex = [0];
   truefalseOptions = [
@@ -36,8 +42,48 @@ export class CreateIndividualComponent {
       label: 'Drew Atkison', value: 'id'
     }
   ];
+  relationshipOptions = [
+    {
+      label: 'Father', value: 'father'
+    },
+    {
+      label: 'Mother', value: 'mother'
+    },
+    {
+      label: 'Spouse', value: 'spouse'
+    },
+    {
+      label: 'Son', value: 'son'
+    },
+    {
+      label: 'Daughter', value: 'daughter'
+    },
+    {
+      label: 'Other', value: 'other'
+    }
+  ];
+  ageRangeOptions = [
+    {
+      label: 'Child', value: 'child'
+    },
+    {
+      label: 'Teenager', value: 'teenager'
+    },
+    {
+      label: 'Young Adult', value: 'youngadult'
+    },
+    {
+      label: 'Adult (25-40)', value: 'adult'
+    },
+    {
+      label: 'Middle Aged', value: 'middleAged'
+    },
+    {
+      label: 'Seniors', value: 'seniors'
+    }
+  ]
 
-  get family() { return this.createForm.controls['family']; }
+  get family() { return this.createForm.controls['family'] as FormArray; }
 
   constructor(
     private router: Router,
@@ -45,7 +91,11 @@ export class CreateIndividualComponent {
   ) { }
 
   submitForm() {
-    
+    console.log('testing form values', this.createForm.getRawValue());
+    if (this.createForm.invalid) {
+
+      return;
+    }
   }
 
   navigateBackToList() {

@@ -15,37 +15,43 @@
     </div>
 </div>
 
-<p-tabView>
+<p-tabView [formGroup]="createForm">
     <p-tabPanel header="Personal">
         <div class="grid">
             <div class="xl:col-6 col-12 formgrid p-fluid">
                 <div class="field mb-4 col-12">
-                    <label for="firstname" class="font-medium text-900">First Name</label>
-                    <input id="firstname" type="text" pInputText>
+                    <label for="firstname" class="font-medium text-900 required">First Name</label>
+                    <input formControlName="firstname" id="firstname" type="text" pInputText>
                 </div>
             </div>
             <div class="xl:col-6 col-12 formgrid p-fluid">
                 <div class="field mb-4 col-12">
-                    <label for="lastname" class="font-medium text-900">Last Name</label>
-                    <input id="lastname" type="text" pInputText>
+                    <label for="lastname" class="font-medium text-900 required">Last Name</label>
+                    <input formControlName="lastname" id="lastname" type="text" pInputText>
                 </div>
             </div>
             <div class="xl:col-6 col-12 formgrid p-fluid">
                 <div class="field mb-4 col-12">
                     <label for="email" class="font-medium text-900">Email</label>
-                    <input id="email" type="text" pInputText>
+                    <input formControlName="email" id="email" type="text" pInputText>
                 </div>
             </div>
             <div class="xl:col-6 col-12 formgrid p-fluid">
                 <div class="field mb-4 col-12">
                     <label for="address" class="font-medium text-900">Address</label>
-                    <input id="address" type="text" pInputText>
+                    <input formControlName="address" id="address" type="text" pInputText>
                 </div>
             </div>
             <div class="xl:col-6 col-12 formgrid p-fluid">
                 <div class="field mb-4 col-12">
                     <label for="phone" class="font-medium text-900">Phone Number</label>
-                    <input id="phone" type="text" pInputText>
+                    <p-inputMask id="phone" formControlName="phone" mask="(999) 999-9999" slotChar=" "></p-inputMask>
+                </div>
+            </div>
+            <div class="xl:col-6 col-12 formgrid p-fluid">
+                <div class="field mb-4 col-12">
+                    <label for="fbirth" class="font-medium text-900">Birthday</label>
+                    <p-inputMask formControlName="birthday" mask="99/99/9999" slotChar=" "></p-inputMask>
                 </div>
             </div>
         </div>
@@ -57,9 +63,11 @@
         </div>
         <p-accordion
             [multiple]="true"
-            [activeIndex]="activeFamilyIndex">
+            [activeIndex]="activeFamilyIndex"
+            formArrayName="family">
             <p-accordionTab *ngFor="let item of family?.controls; let i=index;"
-                 header="{{item.controls['firstname']?.value}} {{ item.controls['lastname']?.value }}">
+                 header="{{item.controls['firstname']?.value}} {{ item.controls['lastname']?.value }}"
+                 [formGroup]="item">
                  <ng-template pTemplate="header">
                     <button *ngIf="family?.controls?.length > 1" (click)="deleteFamilyItem(i)" pButton class="p-panel-header-icon p-link">
                         <span class="pi pi-trash"></span>
@@ -69,25 +77,31 @@
                     <div class="xl:col-6 col-12 formgrid p-fluid">
                         <div class="field mb-4 col-12">
                             <label for="ffirstname" class="font-medium text-900">First Name</label>
-                            <input id="ffirstname" type="text" pInputText>
+                            <input formControlName="firstname" id="ffirstname" type="text" pInputText>
                         </div>
                     </div>
                     <div class="xl:col-6 col-12 formgrid p-fluid">
                         <div class="field mb-4 col-12">
                             <label for="flastname" class="font-medium text-900">Last Name</label>
-                            <input id="flastname" type="text" pInputText>
+                            <input formControlName="lastname" id="flastname" type="text" pInputText>
                         </div>
                     </div>
                     <div class="xl:col-6 col-12 formgrid p-fluid">
                         <div class="field mb-4 col-12">
                             <label for="agerange" class="font-medium text-900">Age Range</label>
-                            <input id="agerange" type="text" pInputText>
+                            <p-multiSelect id="agerange" formControlName="ageRange" optionValue="value" [showHeader]="false" [options]="ageRangeOptions" selectionLimit="1" optionLabel="label"></p-multiSelect>
                         </div>
                     </div>
                     <div class="xl:col-6 col-12 formgrid p-fluid">
                         <div class="field mb-4 col-12">
                             <label for="fbirth" class="font-medium text-900">Birthday</label>
-                            <p-inputMask mask="99/99/9999" slotChar=" "></p-inputMask>
+                            <p-inputMask formControlName="birthday" mask="99/99/9999" slotChar=" "></p-inputMask>
+                        </div>
+                    </div>
+                    <div class="xl:col-6 col-12 formgrid p-fluid">
+                        <div class="field mb-4 col-12">
+                            <label for="fbirth" class="font-medium text-900">Relationship</label>
+                            <p-multiSelect id="holyGhost" formControlName="relationship" optionValue="value" [showHeader]="false" [options]="relationshipOptions" selectionLimit="1" optionLabel="label"></p-multiSelect>
                         </div>
                     </div>
                 </div>
@@ -98,32 +112,32 @@
         <div class="grid">
             <div class="xl:col-6 col-12 formgrid p-fluid">
                 <div class="field mb-4 col-12">
-                    <label for="firstname" class="font-medium text-900">First Time Guest</label>
-                    <p-multiSelect [showHeader]="false" [options]="truefalseOptions" selectionLimit="1" optionLabel="label"></p-multiSelect>
+                    <label for="firstTime" class="font-medium text-900">First Time Guest</label>
+                    <p-multiSelect id="firstTime" formControlName="firstTime" optionValue="value" [showHeader]="false" [options]="truefalseOptions" selectionLimit="1" optionLabel="label"></p-multiSelect>
                 </div>
             </div>
             <div class="xl:col-6 col-12 formgrid p-fluid">
                 <div class="field mb-4 col-12">
-                    <label for="lastname" class="font-medium text-900">Baptized</label>
-                    <p-multiSelect [showHeader]="false" [options]="truefalseOptions" selectionLimit="1" optionLabel="label"></p-multiSelect>
+                    <label for="baptized" class="font-medium text-900">Baptized</label>
+                    <p-multiSelect id="baptized" formControlName="baptized" optionValue="value" [showHeader]="false" [options]="truefalseOptions" selectionLimit="1" optionLabel="label"></p-multiSelect>
                 </div>
             </div>
             <div class="xl:col-6 col-12 formgrid p-fluid">
                 <div class="field mb-4 col-12">
-                    <label for="email" class="font-medium text-900">Holy Ghost</label>
-                    <p-multiSelect [showHeader]="false" [options]="truefalseOptions" selectionLimit="1" optionLabel="label"></p-multiSelect>
+                    <label for="holyGhost" class="font-medium text-900">Holy Ghost</label>
+                    <p-multiSelect id="holyGhost" formControlName="holyGhost" optionValue="value" [showHeader]="false" [options]="truefalseOptions" selectionLimit="1" optionLabel="label"></p-multiSelect>
                 </div>
             </div>
             <div class="xl:col-6 col-12 formgrid p-fluid">
                 <div class="field mb-4 col-12">
-                    <label for="address" class="font-medium text-900">Connected with</label>
-                    <p-multiSelect [options]="individualsOptions"  optionLabel="label"></p-multiSelect>
+                    <label for="connectedWith" class="font-medium text-900">Connected with</label>
+                    <p-multiSelect id="connectedWith" formControlName="connectedWith" optionValue="value" [options]="individualsOptions"  optionLabel="label"></p-multiSelect>
                 </div>
             </div>
-            <div class="xl:col-6 col-12 formgrid p-fluid">
+            <div class="xl:col-12 col-12 formgrid p-fluid">
                 <div class="field mb-4 col-12">
-                    <label for="address" class="font-medium text-900">Notes</label>
-                    <textarea [rows]="5" [cols]="30" pInputTextarea [autoResize]="false"></textarea>
+                    <label for="notes" class="font-medium text-900">Notes</label>
+                    <textarea id="notes" formControlName="notes" [rows]="5" [cols]="30" pInputTextarea [autoResize]="false"></textarea>
                 </div>
             </div>
         </div>
