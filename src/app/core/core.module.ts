@@ -6,6 +6,8 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TokenInterceptorService } from './interceptors/token.interceptor.service';
 import { UserService } from './services/user.service';
 import { AuthService } from './guards/auth.service';
+import {ToastModule} from 'primeng/toast';
+import { ToastService } from './services/toast.service';
 
 
 
@@ -13,13 +15,15 @@ import { AuthService } from './guards/auth.service';
   declarations: [],
   imports: [
     CommonModule,
-    HttpClientModule
+    HttpClientModule,
+    ToastModule
   ],
   providers: [
     ResourceService,
     TokenService,
     UserService,
     AuthService,
+    ToastService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptorService,

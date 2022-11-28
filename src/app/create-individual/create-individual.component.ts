@@ -2,6 +2,8 @@ import { ChangeDetectorRef, Component, OnInit, QueryList, ViewChildren } from '@
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Panel } from 'primeng/panel';
+import { ToastService } from '../core/services/toast.service';
+import { CreateIndividualService } from './create-individual.service';
 
 @Component({
   selector: 'app-create-individual',
@@ -87,15 +89,23 @@ export class CreateIndividualComponent {
 
   constructor(
     private router: Router,
-    private cd: ChangeDetectorRef
+    private cd: ChangeDetectorRef,
+    private toastService: ToastService,
+    private createIndService: CreateIndividualService
   ) { }
 
   submitForm() {
     console.log('testing form values', this.createForm.getRawValue());
+    this.markFormDirty();
     if (this.createForm.invalid) {
-
+      this.toastService.showMessage('error', 'Please fill in required fields', 'Form Error');
       return;
     }
+
+    this.createIndService.createNewIndividual(this.createForm.getRawValue())
+      .subscribe(result => {
+        console.log('result of save', result);
+    });
   }
 
   navigateBackToList() {
@@ -123,5 +133,10 @@ export class CreateIndividualComponent {
       const length = this.family.controls.length;
       this.activeFamilyIndex = [length > 0 ? length - 1: length];
     }, 50);
+  }
+
+  markFormDirty() {
+    this.createForm.markAllAsTouched();
+    this.createForm.updateValueAndValidity();
   }
 }

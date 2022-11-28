@@ -11,11 +11,19 @@ import { InputMaskModule } from 'primeng/inputmask';
 import { AccordionModule } from 'primeng/accordion';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import {MultiSelectModule} from 'primeng/multiselect';
+import { CreateIndividualService } from './create-individual.service';
+import { MessageService } from 'primeng/api';
+import { ToastService } from '../core/services/toast.service';
 
 
 @NgModule({
   declarations: [
     CreateIndividualComponent
+  ],
+  providers: [
+    CreateIndividualService,
+    MessageService,
+    ToastService,
   ],
   imports: [
     CommonModule,
