@@ -28,10 +28,11 @@ export class CreateIndividualComponent {
         relationship: new FormControl('')
       })
     ]),
-    firstTime: new FormControl(''),
-    baptized: new FormControl(''),
-    holyGhost: new FormControl(''),
+    firstTime: new FormControl([]),
+    baptized: new FormControl([]),
+    holyGhost: new FormControl([]),
     connectedWith: new FormControl([]),
+    welcomeEmail: new FormControl(true),
     notes: new FormControl('')
   });
   activeFamilyIndex = [0];
@@ -95,7 +96,6 @@ export class CreateIndividualComponent {
   ) { }
 
   submitForm() {
-    console.log('testing form values', this.createForm.getRawValue());
     this.markFormDirty();
     if (this.createForm.invalid) {
       this.toastService.showMessage('error', 'Please fill in required fields', 'Form Error');
@@ -104,7 +104,13 @@ export class CreateIndividualComponent {
 
     this.createIndService.createNewIndividual(this.createForm.getRawValue())
       .subscribe(result => {
-        console.log('result of save', result);
+        if (result.error) {
+          this.toastService.showMessage('error', 'Error occurred when saving the form!', 'System Error');
+          return;
+        }
+
+        this.toastService.showMessage('success', result.message, 'Success!');
+        this.navigateBackToList();
     });
   }
 

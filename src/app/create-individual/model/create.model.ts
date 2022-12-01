@@ -6,10 +6,10 @@ export interface CreateIndividual {
     address: string;
     birthday: string;
     family: Array<Family>;
-    baptized: string;
-    holyGhost: string;
+    baptized: Array<string>;
+    holyGhost: Array<string>;
     connectedWith: Array<string>;
-    firstTime: string;
+    firstTime: Array<string>;
     notes: string;
 }
 

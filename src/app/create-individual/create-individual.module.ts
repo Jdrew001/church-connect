@@ -14,6 +14,8 @@ import {MultiSelectModule} from 'primeng/multiselect';
 import { CreateIndividualService } from './create-individual.service';
 import { MessageService } from 'primeng/api';
 import { ToastService } from '../core/services/toast.service';
+import {InputSwitchModule} from 'primeng/inputswitch';
+import { ToastModule } from 'primeng/toast';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { ToastService } from '../core/services/toast.service';
     AccordionModule,
     InputMaskModule,
     InputTextareaModule,
-    MultiSelectModule
+    MultiSelectModule,
+    InputSwitchModule,
+    ToastModule
   ]
 })
 export class CreateIndividualModule { }

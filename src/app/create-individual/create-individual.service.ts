@@ -12,6 +12,8 @@ import { CreateIndividual } from './model/create.model';
 })
 export class CreateIndividualService {
 
+  private get URL () { return CreateIndividualConst.INDIVIDUAL_URL; }
+
   constructor(
     private http: HttpClient,
     private resourceService: ResourceService,
@@ -19,7 +21,7 @@ export class CreateIndividualService {
   ) { }
 
   createNewIndividual(body: CreateIndividual) {
-    const url = this.resourceService.getResourceURL(CreateIndividualConst.CREATE_URL);
+    const url = this.resourceService.getResourceURL(`${this.URL}${CreateIndividualConst.CREATE_URL}`);
     return this.http.post(url, body).pipe(catchError(async (err) => this.handleError(err))) as Observable<GenericResponse<any>>;
   }
 

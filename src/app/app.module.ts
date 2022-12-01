@@ -9,6 +9,9 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import {SidebarModule} from 'primeng/sidebar';
 import { AuthService } from './core/guards/auth.service';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { ToastService } from './core/services/toast.service';
 
 @NgModule({
   declarations: [
@@ -21,9 +24,13 @@ import { AuthService } from './core/guards/auth.service';
     CoreModule,
     ButtonModule,
     SharedModule,
-    SidebarModule
+    SidebarModule,
+    ToastModule
   ],
-  providers: [],
+  providers: [
+    MessageService,
+    ToastService,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
